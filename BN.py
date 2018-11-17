@@ -39,15 +39,16 @@ class Node():
     
 class BN():
     def __init__(self, gra, prob):
-        pass
+        self.gra = gra
+        self.prob = prob
 
     def computePostProb(self, evid):
         pass
-               
+
         return 0
-        
-        
+
+
     def computeJointProb(self, evid):
         pass
-        
+
         return 0
