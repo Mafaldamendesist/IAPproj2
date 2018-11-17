@@ -11,9 +11,10 @@ class Node():
     def __init__(self, prob, parents = []):
         self.prob = prob
         self.parents = parents
+        self.result = []
 
     def computeProb(self, evid):
-        if(self.parents.len() > 1){
+        if(len(self.parents) > 1):
             left_evid = evid[self.parents[0]];
             right_evid = evid[self.parents[1]];
 
@@ -22,28 +23,34 @@ class Node():
 
             prob = [prob_false, prob_true]
 
-            return prob
-        }
+            self.result.append(prob)
 
-        elif(self.parents.len() == 1) {
-            parent_evid = evid[self.parents]
+            # return result
+
+        elif(len(self.parents) == 1):
+            parent_evid = evid[self.parents[0]]
 
             prob_true = self.prob[parent_evid]
             prob_false = 1 - prob_true
 
             prob = [prob_false, prob_true]
 
-            return prob
-        }
+            self.result.append(prob)
 
-        else {
+            # return result
+
+        else:
             prob_true = self.prob
             prob_false = 1 - prob_true
 
             prob = [prob_false, prob_true]
 
-            return prob
-        }
+            self.result.append(prob)
+
+            # return result
+
+        def __repr__(self):
+            return result
 
 class BN():
     def __init__(self, gra, prob):
