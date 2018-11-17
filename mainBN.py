@@ -18,11 +18,17 @@ print( "p1 false %.4e p1 true %.4e" % (p1.computeProb(ev)[0] , p1.computeProb(ev
 
 p2 = Node( np.array([.002]), gra[1] )                   # earthquake
 
+#BE         BE        BE        BE
+#FalseFalse FalseTrue TrueFalse TrueTrue
 p3 = Node( np.array([[.001,.29],[.94,.95]]), gra[2] )   # alarm
 print( "p1 = 1, p2 = 1, p3 false %.4e p3 true %.4e" % (p3.computeProb(ev)[0] , p3.computeProb(ev)[1])) 
 
+#A          A        
+#False      True 
 p4 = Node( np.array([.05,.9]), gra[3] )                 # johncalls
 
+#A          A        
+#False      True 
 p5 = Node( np.array([.01,.7]), gra[4] )                 # marycalls
 prob = [p1,p2,p3,p4,p5]
 
