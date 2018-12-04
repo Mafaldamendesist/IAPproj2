@@ -62,22 +62,32 @@ class finiteMDP:
 
             
     def traces2Q(self, trace):
-                # implementar esta funcao
-        
+        #Q is the matrix containing the Q values for all states and for each one the available action
+
+        Q_aux = np.zeros((self.nS,self.nA))
+
+        alpha = 0.1
+
+        while True:
+            for t in trace: #t = [initial state, acction, final state, reward]
+                Q_aux[int(t[0]), int(t[1])] = Q_aux[int(t[0]), int(t[1])] + alpha * (t[3] + self.gamma * max(Q_aux[int(t[2]),:]) - Q_aux[int(t[0]), int(t[1])])
+
+            error_scope = np.linalg.norm(self.Q - Q_aux)
+            self.Q = np.copy(Q_aux)
+
+            if error_scope < 1e-2:
+                break
 
         return self.Q
     
     def policy(self, x, poltype = 'exploration', par = []):
-        # implementar esta funcao
         
         if poltype == 'exploitation':
-            pass
-
+            a = np.argmax(self.Q[x,:])
             
         elif poltype == 'exploration':
-            pass
-
-                
+            a = np.random.randint(self.nA)
+ 
         return a
     
     def Q2pol(self, Q, eta=5):

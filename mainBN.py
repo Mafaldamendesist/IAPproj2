@@ -14,14 +14,14 @@ gra = [[],[],[0,1],[2],[2]]
 ev = (1,1,1,1,1)
     
 p1 = Node( np.array([.001]), gra[0] )                   # burglary
-print( "p1 false %.4e p1 true %.4e" % (p1.computeProb(ev)[0] , p1.computeProb(ev)[1])) 
+print( "p1 false %.4f p1 true %.4f" % (p1.computeProb(ev)[0] , p1.computeProb(ev)[1])) 
 
 p2 = Node( np.array([.002]), gra[1] )                   # earthquake
 
 #BE         BE        BE        BE
 #FalseFalse FalseTrue TrueFalse TrueTrue
 p3 = Node( np.array([[.001,.29],[.94,.95]]), gra[2] )   # alarm
-print( "p1 = 1, p2 = 1, p3 false %.4e p3 true %.4e" % (p3.computeProb(ev)[0] , p3.computeProb(ev)[1])) 
+print( "p1 = 1, p2 = 1, p3 false %.4f p3 true %.4f" % (p3.computeProb(ev)[0] , p3.computeProb(ev)[1])) 
 
 #A          A        
 #False      True 
