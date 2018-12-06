@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 16 20:31:54 2017
+'''
+Grupo 23
+Margarida Morais   86473
+MafaldaMendes      83502
+'''
 
-@author: mlopes
-"""
 import numpy as np
 import random
 
@@ -28,11 +28,13 @@ class finiteMDP:
         traj = np.zeros((n,4))
         x = x0
         J = 0
+        #n is the number of "episodes", times that the agent makes this path
         for ii in range(0,n):
             a = self.policy(x,poltype,polpar)
             r = self.R[x,a]
             y = np.nonzero(np.random.multinomial( 1, self.P[x,a,:]))[0][0]
-            traj[ii,:] = np.array([x, a, y, r])
+            #y is the final state given initial state x and action a, and having the probability p
+            traj[ii,:] = np.array([x, a, y, r])#new step on the trajectory
             J = J + r * self.gamma**ii
             if self.absorv[x]:
                 y = x0
@@ -52,12 +54,13 @@ class finiteMDP:
             self.Q = np.copy(nQ)
             if err<1e-7:
                 break
-            
+
         #update policy
         self.V = np.max(self.Q,axis=1) 
+
         #correct for 2 equal actions
-        self.Pol = np.argmax(self.Q, axis=1)
-                    
+        self.Pol = np.argmax(self.Q, axis=1)  
+
         return self.Q,  self.Q2pol(self.Q)
 
             
@@ -66,7 +69,7 @@ class finiteMDP:
 
         Q_aux = np.zeros((self.nS,self.nA))
 
-        alpha = 0.1
+        alpha = 0.7 #substitutes previous knowledge but not completely
 
         while True:
             for t in trace: #t = [initial state, acction, final state, reward]
@@ -83,16 +86,14 @@ class finiteMDP:
     def policy(self, x, poltype = 'exploration', par = []):
         
         if poltype == 'exploitation':
-            a = np.argmax(self.Q[x,:])
+            #exploiting -> maximize Q
+            a = np.argmax(par[x,:])
             
         elif poltype == 'exploration':
+            #exploring -> agent is exploring the world so he is not interested in the rewards
             a = np.random.randint(self.nA)
  
         return a
     
     def Q2pol(self, Q, eta=5):
-        # implementar esta funcao
         return np.exp(eta*Q)/np.dot(np.exp(eta*Q),np.array([[1,1],[1,1]]))
-
-
-            
