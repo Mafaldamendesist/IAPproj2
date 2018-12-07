@@ -1,8 +1,4 @@
-'''
-Grupo 23
-Margarida Morais   86473
-MafaldaMendes      83502
-'''
+#Grupo 23 - Margarida Morais, 86473 - MafaldaMendes, 83502
 
 import numpy as np
 import random
@@ -28,7 +24,7 @@ class finiteMDP:
         traj = np.zeros((n,4))
         x = x0
         J = 0
-        #n is the number of "episodes", times that the agent makes this path
+        #n is the number of steps that the agent makes in this path
         for ii in range(0,n):
             a = self.policy(x,poltype,polpar)
             r = self.R[x,a]
@@ -88,7 +84,7 @@ class finiteMDP:
         if poltype == 'exploitation':
             #exploiting -> maximize Q
             a = np.argmax(par[x,:])
-            
+           
         elif poltype == 'exploration':
             #exploring -> agent is exploring the world so he is not interested in the rewards
             a = np.random.randint(self.nA)

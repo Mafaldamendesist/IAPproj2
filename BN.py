@@ -1,8 +1,4 @@
-'''
-Grupo 23
-Margarida Morais   86473
-MafaldaMendes      83502
-'''
+#Grupo 23 - Margarida Morais, 86473 - MafaldaMendes, 83502
 
 import itertools
 
