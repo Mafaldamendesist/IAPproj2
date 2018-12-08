@@ -26,9 +26,9 @@ Pl[1,1,0]=1
 Pl[2,1,1]=1
 Pl[3,1,2]=1
 Pl[4,1,3]=1
-Pl[5,1,4]=1    
+Pl[5,1,4]=1
 Pl[6,1,5]=1
-   
+
 Rl = np.zeros((7,2))
 Rl[[0,6],:]=1
 absorv = np.zeros((7,1))
@@ -40,7 +40,7 @@ J,traj = fmdp.runPolicy(1000, 3, poltype = "exploration")
 #     print(i)
 data = np.load("Q1.npz")
 Qr = fmdp.traces2Q(traj)
-print(Qr)
+#print(Qr)
 if np.sqrt(sum(sum((data['Q1']-Qr)**2)))<1:
     print("Aproximação de Q dentro do previsto. OK\n")
 else:
@@ -51,10 +51,10 @@ if np.sqrt(sum(sum((data['traj2']-traj)**2)))<1:
     print("Trajectória óptima. OK\n")
 else:
     print("Trajectória não óptima. FAILED\n")
-    
+
 #exercise 2
 print("exercicio 2")
-data = np.load("traj.npz")    
+data = np.load("traj.npz")
 fmdp = RL.finiteMDP(8,4,0.9)
 q2 = fmdp.traces2Q(data['traj'])
 
@@ -71,4 +71,3 @@ if np.sqrt(sum(sum((data['Q']-q2)**2)))<1:
     print("Aproximação de Q dentro do previsto. OK\n")
 else:
     print("Aproximação de Q fora do previsto. FAILED\n")
-    
